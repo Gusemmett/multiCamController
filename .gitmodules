@@ -1,0 +1,3 @@
+[submodule "OAK-Controller-Rpi"]
+	path = OAK-Controller-Rpi
+	url = https://github.com/Gusemmett/OAK-Controller-Rpi.git

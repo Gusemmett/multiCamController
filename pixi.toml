@@ -1,0 +1,32 @@
+[workspace]
+authors = ["AngusEmmett <gusemmett@gmail.com>"]
+channels = ["conda-forge"]
+name = "multiCamController"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+install-depthai = "python -m pip install depthai"
+dev = "python src/multicam_app.py"
+test = "python -m pytest tests/"
+prepare-spec = "cp multicam.spec.template 'MultiCam Controller.spec'"
+build = {depends-on = ["prepare-spec"], cmd = "pyinstaller --clean -y 'MultiCam Controller.spec'"}
+clean = "rm -rf build/ dist/ *.spec"
+package = {depends-on = ["clean", "build"]}
+
+
+[dependencies]
+python = ">=3.11, <3.13"
+gradio = ">=4.0.0"
+zeroconf = "*"
+pyinstaller = "*"
+
+# OAK dependencies (for integrated server)
+opencv = "*"
+numpy = "*"
+
+# Utility dependencies
+aiofiles = "*"
+requests = "*"
+boto3 = "*"
+pip = ">=25.2,<26"

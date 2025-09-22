@@ -1,0 +1,12 @@
+
+# pixi environments
+.pixi
+*.egg-info
+OAK-Controller-Rpi/*
+OAK-Controller-Rpi
+
+# PyInstaller build artifacts
+MultiCam Controller.spec
+build/
+dist/
+*.spec
