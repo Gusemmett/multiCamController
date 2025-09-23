@@ -7,6 +7,7 @@ version = "0.1.0"
 
 [tasks]
 install-depthai = "python -m pip install depthai"
+install-oak-submodule = "git clone --recurse-submodules https://github.com/Gusemmett/OAK-Controller-Rpi.git"
 dev = "python src/multicam_app.py"
 test = "python -m pytest tests/"
 prepare-spec = "cp multicam.spec.template 'MultiCam Controller.spec'"
