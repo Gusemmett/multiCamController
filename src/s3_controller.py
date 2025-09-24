@@ -117,20 +117,19 @@ class S3Controller:
 
             print(f"📤 Uploading {Path(local_path).name} ({file_size / 1024 / 1024:.1f} MB) to S3...")
 
-            # Upload file with appropriate content type
-            self.s3_client.upload_file(
-                local_path,
-                self.bucket_name,
-                s3_key,
-                ExtraArgs={
-                    'ContentType': content_type,
-                    'Metadata': {
+            # Force single-part upload (no multipart) using put_object
+            with open(local_path, 'rb') as file_obj:
+                self.s3_client.put_object(
+                    Bucket=self.bucket_name,
+                    Key=s3_key,
+                    Body=file_obj,
+                    ContentType=content_type,
+                    Metadata={
                         'original-filename': Path(local_path).name,
                         'file-size': str(file_size),
                         'upload-timestamp': datetime.now().isoformat()
                     }
-                }
-            )
+                )
 
             print(f"✅ Successfully uploaded: s3://{self.bucket_name}/{s3_key}")
             return True
