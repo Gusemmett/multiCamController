@@ -20,6 +20,7 @@ class MultiCamController:
         self.last_downloaded_files = []
         self.debug = False
         self.oak_server_task = None
+        self.oak_server_process = None
         self.oak_device = None
         self.oak_server_instance = None
 
